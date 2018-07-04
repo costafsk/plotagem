@@ -1,0 +1,74 @@
+@charset 'utf-8';
+
+@import url('https://fonts.googleapis.com/css?family=Josefin+Sans|Lobster');
+
+
+.first-title {
+    font-family: 'Josefin Sans', sans-serif;
+    font-family: 'Lobster', cursive;
+    font-size: 2.6em;
+    color: rgba(245, 245, 245, 0.822);
+    text-shadow: 2px 1px rgba(0,0,0,0.5);
+}
+
+.mdl-layout__header {
+    box-shadow: 2px 4px 3px 2px rgba(0,0,0,0.4);
+}
+
+/* Container Config */
+
+.mdl-layout__content {
+     background-color: rgb(226, 226, 226);
+}
+.page-content {
+    display: flex;
+    margin: 0 1.3%;
+    background-color: white;
+    box-shadow: 2px 2px 3px 3px rgba(0,0,0,0.2);
+}
+
+.page-content > h3 {
+    color: rgba(0,0,0,0.6);
+    margin-left: 2%;
+}
+
+/* ICON Font awesome config */
+@media(min-width:430px) {
+    .fab {
+        font-size: 3em;
+        color: rgba(245, 245, 245, 0.945);
+        text-shadow: 2px 1px rgba(0, 0, 0, 0.5);
+        transition: 1s color;
+    }
+    .fab:hover {
+        color: grey;
+        cursor: pointer;
+    }
+}
+
+@media(max-width:429px) {
+    .fab {
+        display: none;
+    }
+}
+
+
+/* Footer */
+
+.mdl-mega-footer--bottom-section {
+    background-color: rgba(0, 0, 0, 0.4);
+    margin-bottom: 0;
+    border-top: 1px solid rgba(0,0,0,0.1);
+}
+
+
+.mdl-mega-footer--link-list {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    margin-right: 10%;
+}
+
+
+
+
