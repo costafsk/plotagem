@@ -32,6 +32,11 @@
     margin-left: 2%;
 }
 
+.box {
+    display: flex;
+    flex-direction: row;
+}
+
 /* ICON Font awesome config */
 @media(min-width:430px) {
     .fab {
@@ -44,7 +49,26 @@
         color: grey;
         cursor: pointer;
     }
+    .page-content > h3 {
+        padding: 10px;
+        width: 80%;
+        border-bottom: 1px solid rgba(0,0,0,0.1);
+    }
+    .page-content {
+        display: flex;
+        flex-direction: column;
+    }
 }
+
+@media(max-width:605px) {
+    .page-content>h3 {
+        padding: 10px;
+        width: 80%;
+        font-size: 2em;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    }
+}
+
 
 @media(max-width:429px) {
     .fab {
@@ -69,6 +93,14 @@
     margin-right: 10%;
 }
 
+.mdl-mega-footer--link-list > li {
+    transition: 0.5s color;
+    color: rgb(243, 242, 242);
+}
+
+.mdl-mega-footer--link-list > li:hover {
+    color: rgba(0,0,0,0.9);
+}
 
 
 
