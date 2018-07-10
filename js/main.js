@@ -1,6 +1,9 @@
-import {addCity} from './config.module.js';
+import {city, delPreload} from './config.module.js';
 
 document.addEventListener('DOMContentLoaded', init());
+
+let fatchs = 0; 
+let flag = [];
 
 function init() {
     for (let i=99; i<113; i++) {
@@ -15,6 +18,8 @@ function init() {
     function process(text) {
         const rows = text.split('\n');
         const dates = [];
+        fatchs++;
+        fatchs === 14 ? delPreload() : null;
         for (let i=2; i<rows.length -1; i++) {
             const columns = rows[i].split(',');
             for (let j=0; j<columns.length; j++) {
@@ -29,25 +34,57 @@ function init() {
                 longitude: columns[3],
                 taxa: columns[4],
             };
+            if (i === 2) {
+                flag.push(date.municipio);
+            }
+                
             dates.push(date);
         }
+        /*
+        let temp = flag[0];
+        for (const i of flag) {
+            if (temp !== i) {
+                alert('temp:' + temp + '\ni:' + i);
+                location.reload();
+            }
+        }*/
         options(dates);
     }
     
     const select = document.querySelector('#city');
+
     function options(dates) {
+        let flag = 0;
         for (let i=0; i<dates.length; i++) {
+            const first = dates[0].municipio;
+            if (dates[i].municipio === first) {
+                flag++;
+            }
+            if (flag === 2) {
+                break;
+            }   
             const newOption = document.createElement('option');
             newOption.textContent = dates[i].municipio;
             newOption.value = newOption.textContent;
-            select.appendChild(newOption);  
+            select.appendChild(newOption);
         }
     }
-    
+
     const button = document.querySelector('.mdl-button');
-    
+    let escolhidos = [];
     button.addEventListener('click', function(event) {
         event.preventDefault();
-        addCity();
+        let flag = true;
+        for (let i=0; i<escolhidos.length; i++) {
+            for (let j=0; j<escolhidos.length; j++) {
+                if (escolhidos[i] === escolhidos[j] && i!==j) {
+                    flag = false;
+                }
+            }
+        }
+        if (flag) {
+            escolhidos.push(select.value);
+            city();
+        }
     });
 };

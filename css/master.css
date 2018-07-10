@@ -2,6 +2,44 @@
 
 @import url('https://fonts.googleapis.com/css?family=Josefin+Sans|Lobster');
 
+.mdl-layout__container {
+    display: none;
+    height: 0px;
+}
+
+body {
+    width: 100%;
+    height: 100%;
+}
+
+.initial {
+    background-color: rgb(226, 226, 226);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+}
+
+.preload {
+    display:flex;
+    border: 16px solid #f3f3f3;
+    border-top: 16px solid #507994;
+    border-radius: 50%;
+    width: 300px;
+    height: 300px;
+    animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
 
 .first-title {
     font-family: 'Josefin Sans', sans-serif;
@@ -35,6 +73,11 @@
 .box {
     display: flex;
     flex-direction: row;
+}
+
+.remove:hover {
+    color: '#ff6565';
+    background-color: 'white';
 }
 
 /* ICON Font awesome config */
