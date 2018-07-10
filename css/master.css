@@ -38,7 +38,7 @@
 }
 
 /* ICON Font awesome config */
-@media(min-width:430px) {
+@media(min-width:820px) {
     .fab {
         font-size: 3em;
         color: rgba(245, 245, 245, 0.945);
@@ -58,14 +58,87 @@
         display: flex;
         flex-direction: column;
     }
+    .left-content {
+        margin: 0 2%;
+        width: 25%;
+    }
+    .add {
+        max-width: 10%;
+        display: flex;
+    }
+    #city {
+        max-width: 90%;
+        padding: 7px;
+        border: none;
+        outline: none;
+        box-shadow: 2px 2px 1px 1px rgba(0,0,0,0.4);
+        border-radius: 5px;
+        background-color:  rgba(0, 0, 0, 0.4);
+        background-position: 205px center;
+        font-family: Arial, Helvetica,sans-serif;
+        font-size: 1.2em;
+        padding: 3.7%;
+        color:white;
+        font-weight: bold;
+    }
+    .mdl-list > li {
+        max-width: 90%;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    }
 }
 
-@media(max-width:605px) {
-    .page-content>h3 {
+@media(max-width:819px) {
+    .page-content > h3 {
         padding: 10px;
         width: 80%;
         font-size: 2em;
         border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    }
+    .page-content {
+        display: flex;
+        flex-direction: column;
+    }
+    .left-content {
+        margin: 0 2%;
+        width: 100%;
+    }
+
+    .add {
+        margin-left: 2%;
+        max-width: 100%;
+        display: flex;
+    }
+
+    #city {
+        max-width: 100%;
+        padding: 7px;
+        border: none;
+        outline: none;
+        box-shadow: 2px 2px 1px 1px rgba(0, 0, 0, 0.4);
+        border-radius: 5px;
+        background-color: rgba(0, 0, 0, 0.4);
+        background-position: 205px center;
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 1.2em;
+        padding: 3.7%;
+        color: white;
+        font-weight: bold;
+    }
+
+    .mdl-list>li {
+        max-width: 90%;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    }
+    .fab {
+        font-size: 3em;
+        color: rgba(245, 245, 245, 0.945);
+        text-shadow: 2px 1px rgba(0, 0, 0, 0.5);
+        transition: 1s color;
+    }
+
+    .fab:hover {
+        color: grey;
+        cursor: pointer;
     }
 }
 

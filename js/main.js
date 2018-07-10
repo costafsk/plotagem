@@ -1,5 +1,8 @@
-document.addEventListener('DOMContentLoaded', function() {
-    'http://dados.fee.tche.br/ckan-download/fee-1999-mun-taxa-de-reprovacao-estadual-102566.csv';
+import {addCity} from './config.module.js';
+
+document.addEventListener('DOMContentLoaded', init());
+
+function init() {
     for (let i=99; i<113; i++) {
         let year = '19';
         i === 99 ? year += i : year = 20 + String(i).substring(1, 3);
@@ -32,7 +35,6 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     
     const select = document.querySelector('#city');
-    
     function options(dates) {
         for (let i=0; i<dates.length; i++) {
             const newOption = document.createElement('option');
@@ -42,34 +44,10 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
     
-    const ul = document.querySelector('.mdl-list');
     const button = document.querySelector('.mdl-button');
     
     button.addEventListener('click', function(event) {
         event.preventDefault();
-        const li = document.createElement('li');
-        li.className = 'mdl-list__item';
-        const spanName = document.createElement('span');
-        spanName.className = 'mdl-list__item-primary-content';
-        spanName.textContent = select.value;
-        const spanInput = document.createElement('span');
-        spanInput.className = 'mdl-list__item-secondary-action';
-        const labelInput = document.createElement('label');
-        labelInput.classList.add('mdl-checkbox', 'mdl-js-checkbox', 'mdl-js-ripple-effect', 'mdl-js-ripple-effect--ignore-events');
-        labelInput.htmlFor = spanName.textContent;
-        const input = document.createElement('input');
-        input.className = 'mdl-checkbox__input';
-        input.setAttribute('type', 'checkbox');
-        input.id = spanName.textContent;
-
-        
-        labelInput.appendChild(input);
-        spanInput.appendChild(labelInput);
-        li.appendChild(spanName);
-        li.appendChild(spanInput);
-        ul.appendChild(li);
+        addCity();
     });
-
-});
-
-
+};
