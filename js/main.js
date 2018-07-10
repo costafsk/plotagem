@@ -3,7 +3,7 @@ import {city, delPreload} from './config.module.js';
 document.addEventListener('DOMContentLoaded', init());
 
 let fatchs = 0; 
-let flag = [];
+let optionsFlag = true;
 
 function init() {
     for (let i=99; i<113; i++) {
@@ -33,22 +33,11 @@ function init() {
                 latitude: columns[2],
                 longitude: columns[3],
                 taxa: columns[4],
-            };
-            if (i === 2) {
-                flag.push(date.municipio);
-            }
-                
+            };                
             dates.push(date);
         }
-        /*
-        let temp = flag[0];
-        for (const i of flag) {
-            if (temp !== i) {
-                alert('temp:' + temp + '\ni:' + i);
-                location.reload();
-            }
-        }*/
-        options(dates);
+
+        optionsFlag ? options(dates) : null;
     }
     
     const select = document.querySelector('#city');
@@ -61,6 +50,7 @@ function init() {
                 flag++;
             }
             if (flag === 2) {
+                optionsFlag = false;
                 break;
             }   
             const newOption = document.createElement('option');
@@ -75,13 +65,12 @@ function init() {
     button.addEventListener('click', function(event) {
         event.preventDefault();
         let flag = true;
-        for (let i=0; i<escolhidos.length; i++) {
-            for (let j=0; j<escolhidos.length; j++) {
-                if (escolhidos[i] === escolhidos[j] && i!==j) {
-                    flag = false;
-                }
+        for (const i of escolhidos) {
+            if (i === select.value) {
+                flag = false;
             }
         }
+
         if (flag) {
             escolhidos.push(select.value);
             city();
