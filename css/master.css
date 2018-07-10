@@ -39,7 +39,24 @@ body {
         transform: rotate(360deg);
     }
 }
+.right-content {
+    width: 65%;
+    height: 50%;
+}
 
+.columns {
+    display: flex;
+    flex-direction: row;
+}
+
+.column {
+    margin: 0 2%;
+}
+.escalas {
+    margin: 5% 0;
+    width: 100%;
+    border-top: 1px dashed rgba(0,0,0,0.3);
+}
 
 .first-title {
     font-family: 'Josefin Sans', sans-serif;
