@@ -1,5 +1,3 @@
-import {city, delPreload} from './config.module.js';
-
 document.addEventListener('DOMContentLoaded', init());
 
 let fatchs = 0; 
@@ -20,7 +18,7 @@ function init() {
         const dates = [];
         fatchs++;
         fatchs === 14 ? delPreload() : null;
-        for (let i=2; i<rows.length -1; i++) {
+        for (let i=1; i<rows.length -1; i++) {
             const columns = rows[i].split(',');
             for (let j=0; j<columns.length; j++) {
                 columns[j] = columns[j].replace('"', '');
@@ -44,7 +42,7 @@ function init() {
 
     function options(dates) {
         let flag = 0;
-        for (let i=0; i<dates.length; i++) {
+        for (let i=1; i<dates.length; i++) {
             const first = dates[0].municipio;
             if (dates[i].municipio === first) {
                 flag++;
@@ -70,10 +68,59 @@ function init() {
                 flag = false;
             }
         }
-
         if (flag) {
             escolhidos.push(select.value);
             city();
         }
     });
+    
+    
+    function city() {
+        const select = document.querySelector('#city');
+        const ul = document.querySelector('.mdl-list');
+        const li = document.createElement('li');
+        li.className = 'mdl-list__item';
+        const span = document.createElement('span');
+        span.className = 'mdl-list__item-primary-content';
+        span.textContent = select.value;
+        const button = document.createElement('button');
+        button.className = 'remove';
+        button.textContent = 'Remover';
+        button.addEventListener('focus', function() {
+            let flag;
+            button.style.backgroundColor = '#ff6565';
+            button.style.color = 'white';
+            button.style.outline = 'none';
+            button.style.border = 'none';
+            button.style.borderRadius = '3px';
+            button.style.fontWeight = 'bold';
+            button.style.fontSize = '1em';
+            button.style.padding = '4px';
+            button.style.cursor = 'pointer';
+            button.style.transition = '0.3s background-color';
+            setTimeout(function() {
+                flag = button.parentElement;
+                for (let i=0; i<escolhidos.length; i++) {
+                    if (escolhidos[i] === flag.firstChild.textContent) {
+                        escolhidos.splice(i, 1);
+                        break;
+                    }
+                }
+                flag.remove();
+            }, 500);
+            
+        })
+        console.log(escolhidos);
+        li.appendChild(span);
+        li.appendChild(button);
+        ul.appendChild(li);
+    }
+
+    function delPreload() {
+        document.querySelector('.preload').parentElement.remove();
+        const layout = document.querySelector('.mdl-layout__container');
+        layout.style.display = 'block';
+        layout.style.height = '100%';
+    }
+    
 };
