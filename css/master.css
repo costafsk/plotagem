@@ -31,6 +31,18 @@ body {
     animation: spin 2s linear infinite;
 }
 
+.remove {
+    background-color:#ff6565;
+    color: white;
+    outline: none;
+    border: none;
+    border-radius: 3px;
+    font-weight: bold;
+    padding: 4px;
+    cursor: pointer;
+    transition: 0.3s background-color;
+}
+
 @keyframes spin {
     0% {
         transform: rotate(0deg);
