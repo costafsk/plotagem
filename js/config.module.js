@@ -10,6 +10,13 @@ export function city(escolhidos) {
     const ul = document.querySelector('.mdl-list');
     const li = document.createElement('li');
     li.className = 'mdl-list__item';
+    const cor = document.createElement('div');
+    cor.style.backgroundColor = randomColor(null, true);
+    cor.style.width = '27px';
+    cor.className = 'cores';
+    cor.style.marginRight = '5%';
+    cor.style.borderRadius = '360px';
+    cor.style.height = '27px';
     const span = document.createElement('span');
     span.className = 'mdl-list__item-primary-content';
     span.textContent = select.value;
@@ -21,14 +28,16 @@ export function city(escolhidos) {
         setTimeout(function() {
             const item = buttonRemove.parentElement;
             for (let i = 0; i < escolhidos.length; i++) {
-                if (escolhidos[i] === item.firstChild.textContent) {
+                if (escolhidos[i] === item.children[1].textContent) {
                     escolhidos.splice(i, 1);
                     break;
                 }
             }
+            del(item);
             item.remove();
         }, 500);
     });
+    li.appendChild(cor);
     li.appendChild(span);
     li.appendChild(buttonRemove);
     ul.appendChild(li);
@@ -36,14 +45,19 @@ export function city(escolhidos) {
 export function createColumn(escolhidos, dates) {
     const cidade = escolhidos[escolhidos.length - 1];
     const taxas = findTaxas(cidade, dates);
-    const color = randomColor();
+    const color = randomColor(cidade, false);
     for (const i of taxas) {
-        const columnOfPlot = document.querySelector('#y' + i[0]);
+        const columnPlot = document.querySelector('#y' + i[0]);
         const column = document.createElement('div');
         column.className = cidade;
         column.style.backgroundColor = color;
-        column.style.height = ((i[1]*100) / 50) + '%';
-        console.log(column);
+        column.style.height = ((i[1]*100) / 45) + '%';
+        column.style.width = '20px';
+        column.style.display = 'flex';
+        column.style.alignSelf = 'flex-end';
+        if (column !== null && columnPlot !== null) {
+            columnPlot.appendChild(column);
+        }
     }
 }
 
@@ -66,10 +80,28 @@ function findTaxas(cidade, dates) {
     return taxas;
 }
 
-function randomColor() {
-    const red = parseInt(Math.random(1) * 255);
-    const green = parseInt(Math.random(1) * 255);
-    const blue = parseInt(Math.random(1) * 255);
+function randomColor(cidade, mode) {
+    if (mode) {
+        const red = parseInt(Math.random(1) * 255);
+        const green = parseInt(Math.random(1) * 255);
+        const blue = parseInt(Math.random(1) * 255);
+        return `rgb(${red},${green},${blue})`;
+    } else {
+        const li = document.querySelectorAll('.cores');
+        for (const i of li) {
+            const text = i.parentElement.children[1].textContent;
+            if (text === cidade) {
+                return i.parentElement.firstChild.style.backgroundColor;
+            }
+        }
+    }
+}
 
-    return `rgb(${red},${green},${blue})`;
+function del(item) {
+    const name = item.children[1].textContent;
+    const columns = document.querySelectorAll('.' + name);
+    for (const i of columns) {
+        i.remove();
+    }
+    return null;
 }
