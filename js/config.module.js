@@ -43,12 +43,15 @@ export function city(escolhidos) {
     ul.appendChild(li);
 }
 export function createColumn(escolhidos, dates) {
-    const cidade = escolhidos[escolhidos.length - 1];
+    let cidade = escolhidos[escolhidos.length - 1];
     const taxas = findTaxas(cidade, dates);
     const color = randomColor(cidade, false);
     for (const i of taxas) {
         const columnPlot = document.querySelector('#y' + i[0]);
         const column = document.createElement('div');
+        if (cidade.includes(' ')) {
+            cidade = cidade.replace(/ /g, '_');
+        }
         column.className = cidade;
         column.style.backgroundColor = color;
         column.style.height = ((i[1]*100) / 45) + '%';
@@ -98,10 +101,10 @@ function randomColor(cidade, mode) {
 }
 
 function del(item) {
-    const name = item.children[1].textContent;
+    let name = item.children[1].textContent;
+    name.includes(' ') ? name = name.replace(/ /g, '_') : null;
     const columns = document.querySelectorAll('.' + name);
-    for (const i of columns) {
-        i.remove();
+    for (let i=0; i<columns.length; i++) {
+        columns[i].remove();
     }
-    return null;
 }

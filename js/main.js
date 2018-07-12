@@ -23,8 +23,7 @@ function init() {
         for (let i=1; i<rows.length -1; i++) {
             const columns = rows[i].split(',');
             for (let j=0; j<columns.length; j++) {
-                columns[j] = columns[j].replace('"', '');
-                columns[j] = columns[j].replace('"', '');
+                columns[j] = columns[j].replace(/"/g, '');
             }
             // Armazenamento
             const date = {
@@ -61,7 +60,6 @@ function init() {
         }
         if (flag) {
             escolhidos.push(select.value);
-            console.log(escolhidos);
             city(escolhidos);
             createColumn(escolhidos, dates);
         }
